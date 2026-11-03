@@ -69,8 +69,9 @@ async function main() {
             // Ahorro de cuota: la imagen ya existe, no se llama al modelo de imágenes
             console.log('Paso 3: la imagen ya existía, no se llamó al modelo de imágenes.');
         } else {
-            // La descripción que se envía se lee desde el archivo .txt guardado
-            const bytes = await imagenModulo.generarImagen(descripcion);
+            // La descripción se lee SIEMPRE desde el archivo .txt guardado
+            const descripcionDelArchivo = fs.readFileSync(rutaTxt, 'utf-8');
+            const bytes = await imagenModulo.generarImagen(descripcionDelArchivo);
             const ruta = imagenModulo.guardarImagen(mundo, bytes);
             console.log(`Paso 3: imagen guardada en ${rutaCorta(ruta)}`);
         }
