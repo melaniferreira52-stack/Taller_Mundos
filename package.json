@@ -1,0 +1,22 @@
+{
+  "name": "mundos-ia",
+  "version": "1.0.0",
+  "description": "Taller de mundos: recibe situacion, mundo y 5 colores por consola, genera la descripcion con un modelo de texto y la imagen con un modelo de imagenes (APIs gratuitas). Proyecto educativo del SENA.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "sena",
+    "nodejs",
+    "ia",
+    "generacion-de-imagenes",
+    "taller"
+  ],
+  "author": "melani",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "object-hash": "^3.0.0"
+  }
+}
