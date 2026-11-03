@@ -138,6 +138,21 @@ El programa **detecta el servicio por el contenido de la URL** (`ai.api.nvidia.c
 (JSON con base64 o bytes directos), así que funciona con cualquiera de las tres opciones
 de la guía. Para cambiar de servicio solo editas `.env`.
 
+### Estado de las imágenes en `imagenes/` (importante)
+
+Las imágenes que hay ahora en `imagenes/` (mundo_cba86145.jpg, mundo_1416e17d.jpg,
+etc.) fueron generadas con **servidores locales simulados** para probar el programa sin
+gastar cuota: son JPEG de 64×64 con un color de relleno. Son evidencia de que el
+**flujo completo funciona** (JSON → descripción → imagen válida que se abre), pero
+**no** son imágenes de Cloudflare. Cuando pegues tus claves reales en `.env`:
+
+1. Borra las carpetas `data/`, `descripciones/` e `imagenes/` (o los archivos de esos
+   mundos), porque si no el programa reutilizará las descripciones e imágenes de prueba.
+2. Ejecuta de nuevo el comando de un mundo: esta vez sí llamará a Groq y a Cloudflare
+   y generará imágenes reales de 1024×1024.
+3. Para la entrega, las capturas de `evidencias/` también deberían regenerarse con esas
+   ejecuciones reales (las de ahora muestran las pruebas con servidores locales).
+
 ### Límites gratuitos
 
 - **Groq**: 30 peticiones por minuto y 1.000 por día (plan gratuito).
