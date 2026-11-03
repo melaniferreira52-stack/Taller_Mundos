@@ -1,0 +1,46 @@
+# Evidencias de errores provocados (Parte 5)
+
+## Error 1 — Clave inválida (estado 401)
+Comando: `node src/index.js "Una tormenta eléctrica amenaza la ciudad flotante" "Aerópolis, un archipiélago de islas que flotan sobre las nubes" rojo azul verde dorado violeta`
+(con la clave del .env aún en `pega_aqui_tu_clave`)
+
+Salida:
+```
+Paso 1: mundo guardado en data/mundo_cba86145.json
+Error: La API key no es válida. Revisa tu archivo .env.
+exitCode=1
+```
+Resultado parcial conservado: sí, `data/mundo_cba86145.json` existe.
+
+## Error 2 — URL o modelo incorrectos (estado 404)
+Comando: `TEXTO_URL="https://api.groq.com/openai/v1/chat/completions_inexistente" node src/index.js "Un desierto de cristal bajo dos lunas" "Cristalia, una llanura de espejos rotos" cian magenta amarillo negro blanco`
+
+Salida:
+```
+Paso 1: mundo guardado en data/mundo_bdb59469.json
+Error: El modelo o la URL no existen. Revisa tu configuración.
+exitCode=1
+```
+
+## Error 3 — Sin conexión o URL mal escrita (fetch lanza TypeError)
+Comando: `TEXTO_URL="https://dominio-que-no-existe-de-verdad-xyz.com/v1/chat" node src/index.js "Una ciudad submarina de coral y metal" "Abisalia, ciudad bajo el océano profundo" turquesa naranja plata gris marron`
+
+Salida:
+```
+Paso 1: mundo guardado en data/mundo_662361c8.json
+Error: No se pudo conectar. Revisa tu internet o la URL.
+exitCode=1
+```
+
+## Error 4 — Tiempo de espera agotado (error.name === 'TimeoutError')
+Comando: `TEXTO_URL="http://127.0.0.1:9977/v1/chat" node src/index.js "Una fortaleza de hielo que se derrite lentamente" "Glaciaris, fortaleza de hielo eterno" blanco celeste azul plata gris`
+(servidor local que acepta la conexión pero nunca responde)
+
+Salida:
+```
+Paso 1: mundo guardado en data/mundo_f689dd89.json
+Error: El servicio tardó demasiado en responder.
+exitCode=1
+```
+
+Nota: en ningún mensaje aparece la clave. Las claves nunca se imprimen en consola.
